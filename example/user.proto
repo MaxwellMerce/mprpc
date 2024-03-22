@@ -1,0 +1,59 @@
+syntax="proto3";//声明protobuf的版本
+
+package fixbug;//声明了代码所在的包（对于c++来说是namespace）
+
+//定义下面的选项，表示生成service服务类和rpc方法描述，默认不生成
+option cc_generic_services=true;
+
+//每个message型字段都会生成一个对应的类，这些类继承自google::protobuf::Message
+//这些可以给rpc方法参数和返回值序列化和反序列化
+message ResultCode
+{
+    int32 errcode=1;
+    string errmsg=2;
+}
+
+//登录消息
+message LoginRequest
+{
+    string name=1;
+    string pwd=2;//1和2不是初始化的意思只是代表顺序
+}
+//响应消息
+message LoginReponse
+{
+    ResultCode result=1;
+    bool success=2;
+}
+
+message User
+{
+    bytes name=1;
+    uint32 age=2;
+    enum Sex
+    {
+        MAN=0;
+        WOMAN=1;
+    }
+    Sex sex=3;
+}
+
+message GetFriendListsRquest
+{
+   uint32 userid=1;
+}
+message GetFriendListsResponse
+{
+    ResultCode result=1;
+    repeated User users=2;//重复,这样生成的就是一个列表
+}
+
+//每个service型字段都会生成一个对应的类，这些类继承自google::protobuf::Service
+//在protobuf中描述一个rpc方法的类型
+service UserServiceRpc
+{
+    //定义了rpc方法应该接收和返回的消息类型
+    //在生成的类中也会生成对应的方法以虚函数的形式生成
+    rpc Login(LoginRequest) returns(LoginReponse);
+    rpc GetFriendLists(GetFriendListsRquest) returns(GetFriendListsResponse);
+}

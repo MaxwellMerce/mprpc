@@ -1,0 +1,7 @@
+20:32:52 =>[info]first log message
+20:32:52 =>[info]/home/zgq/项目/mprpc/example/callee/userService.cc:main:51
+20:33:13 =>[info]first log message
+20:33:13 =>[info]/home/zgq/项目/mprpc/example/callee/userService.cc:main:51
+20:49:14 =>[info]first log message
+20:49:21 =>[info]first log message
+20:49:21 =>[info]/home/zgq/项目/mprpc/example/callee/userService.cc:main:51

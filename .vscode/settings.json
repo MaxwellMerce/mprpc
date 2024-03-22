@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "functional": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp",
+        "condition_variable": "cpp"
+    }
+}
